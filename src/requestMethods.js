@@ -23,7 +23,7 @@ privateRequest.interceptors.response.use(
   error => {
     if (error.response.status === 401) {
       // Token has expired, redirect to login page
-      window.location.href = '/sign-in';
+      window.location.href = '/';
     }
     return Promise.reject(error);
   }
@@ -32,8 +32,8 @@ privateRequest.interceptors.response.use(
 // Subscribe to changes in the token value
 store.subscribe(() => {
   const state = store.getState();
-  const authToken = state.auth.userToken;
-  privateRequest.defaults.headers.Authorization = `Bearer ${authToken}` || '';
+  const authToken = state.auth.userToken !== null ? state.auth.userToken : '';
+  privateRequest.defaults.headers.Authorization = `Bearer ${authToken}`;
 });
 
 // Initial setup of Authorization header

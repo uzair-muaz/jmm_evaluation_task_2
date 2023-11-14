@@ -81,7 +81,7 @@ const CustomTextField = styled(TextField)({
     height: '40px',
     fontSize: '14px',
     color: '#565556',
-    borderRadius: '8px'
+    borderRadius: '2px'
   },
   '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
     border: '1px solid #EFEFEF' // set the border width when the input is focused
@@ -127,9 +127,7 @@ const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
   color: '#CED4DA',
   borderRadius: '2px',
   height: '16px',
-  width: '16px',
-  padding: '0px',
-  margin: '0px'
+  width: '16px'
 }));
 
 const CheckBoxText = styled(Typography)(() => ({
@@ -158,8 +156,8 @@ const SignIn = () => {
     await publicRequest
       .post(`login`, values)
       .then(res => {
-        console.log('api data', res.data);
-        dispatch(loginSuccess(res));
+        console.log('api data', res.data.token);
+        dispatch(loginSuccess(res.data.token));
         navigate('/dashboard/employees');
       })
       .catch(error => {
@@ -230,15 +228,6 @@ const SignIn = () => {
           </Box>
 
           <CheckBoxContainer>
-            {/* <input
-              type="checkbox"
-              style={{
-                border: '1px solid #CED4DA',
-                borderRadius: '2px',
-                height: '16px',
-                width: '16px'
-              }}
-            /> */}
             <CustomCheckbox />
             <CheckBoxText>Save credentials</CheckBoxText>
           </CheckBoxContainer>
@@ -246,7 +235,7 @@ const SignIn = () => {
             {loader ? (
               <CircularProgress sx={{ color: 'white' }} size={23} />
             ) : (
-              'Sign in'
+              'Login'
             )}{' '}
           </LoginButton>
         </form>
