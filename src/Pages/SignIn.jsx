@@ -38,13 +38,14 @@ const SignInCard = styled(Box)(() => ({
   justifyContent: 'center',
   alignItems: 'center',
   flexDirection: 'column',
-  width: '399px',
-  height: '503px',
+  width: '95%',
+  maxWidth: '399px',
+  minHeight: '503px',
   background: '#FFFFFF',
   boxShadow: '0px 5px 15px #B7B7B733',
   border: '1px solid #F1F1F1',
   borderRadius: '6px',
-  padding: '34px 0px 39px 0px'
+  padding: '34px 10px 39px 10px'
 }));
 
 const Heading = styled(Typography)(() => ({
@@ -55,7 +56,8 @@ const Heading = styled(Typography)(() => ({
 const SubHeading = styled(Typography)(() => ({
   fontSize: '14px',
   color: '#707070',
-  marginTop: '8px'
+  marginTop: '8px',
+  textAlign: 'center'
 }));
 
 const CustomFormLabel = styled(Typography)(() => ({
@@ -69,7 +71,8 @@ const LoginButton = styled(Button)(() => ({
   borderRadius: '2px',
   fontSize: '16px',
   background: '#3B3EC2',
-  width: '277px',
+  width: '100%',
+  maxWidth: '277px',
   height: '40px',
   '&:hover': {
     background: '#1C1E6E'
@@ -182,7 +185,11 @@ const SignIn = () => {
 
         <form
           onSubmit={formik.handleSubmit}
-          style={{ marginTop: '73px', width: '100%', maxWidth: '277px' }}
+          style={{
+            marginTop: '73px',
+            width: '100%',
+            maxWidth: '277px'
+          }}
         >
           <Box sx={{ width: '100%' }}>
             <CustomFormLabel>Email</CustomFormLabel>
@@ -228,7 +235,13 @@ const SignIn = () => {
           </Box>
 
           <CheckBoxContainer>
-            <CustomCheckbox />
+            <CustomCheckbox
+              onChange={() => {
+                toast('I do nothing at this point!', {
+                  icon: '☹️'
+                });
+              }}
+            />
             <CheckBoxText>Save credentials</CheckBoxText>
           </CheckBoxContainer>
           <LoginButton variant="contained" type="submit">

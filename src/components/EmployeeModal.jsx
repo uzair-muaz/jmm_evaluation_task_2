@@ -5,7 +5,7 @@ import moment from 'moment';
 import styled from '@emotion/styled';
 import { Box, Typography } from '@mui/material';
 
-const MainContainer = styled(Box)(() => ({
+const MainContainer = styled(Box)(({ theme }) => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -13,10 +13,13 @@ const MainContainer = styled(Box)(() => ({
   background: '#FFFFFF',
   border: '1px solid #E9E9E9',
   borderRadius: '8px',
-  width: '100%',
+  width: '95%',
   maxWidth: '455px',
-  height: '437px',
-  padding: '0px 24.5px'
+  minHeight: '437px',
+  padding: '0px 24.5px 10px 24.5px',
+  [theme.breakpoints.down('md')]: {
+    padding: '0px 24.5px 15px 24.5px'
+  }
 }));
 const ModalHeader = styled(Box)(() => ({
   display: 'flex',

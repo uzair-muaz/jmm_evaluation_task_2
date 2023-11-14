@@ -48,13 +48,18 @@ const CustomPagination = styled(Pagination)(() => ({
   }
 }));
 
-const PageHeader = styled(Box)(() => ({
+const PageHeader = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '100%',
   padding: '0px 23px',
-  height: '83px'
+  minHeight: '83px',
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+    alignItems: 'start',
+    padding: '20px'
+  }
 }));
 
 const TotalText = styled(Typography)(() => ({
@@ -93,7 +98,7 @@ const SearchBar = styled(TextField)({
   borderRadius: '2px'
 });
 
-const SearchButton = styled(Button)(() => ({
+const SearchButton = styled(Button)(({ theme }) => ({
   borderRadius: '2px',
   fontSize: '16px',
   background: '#3B3EC2',
@@ -102,6 +107,9 @@ const SearchButton = styled(Button)(() => ({
   height: '40px',
   '&:hover': {
     background: '#1C1E6E'
+  },
+  [theme.breakpoints.down('md')]: {
+    width: '80px'
   }
 }));
 
