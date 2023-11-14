@@ -113,7 +113,7 @@ const Employees = () => {
   const [search, setSearch] = useState('');
   const [lastSearch, setLastSearch] = useState('');
   const [open, setOpen] = useState(false);
-
+  const [employeeID, setEmployeeID] = useState('');
   const handleOpen = () => {
     setOpen(true);
   };
@@ -181,7 +181,13 @@ const Employees = () => {
             )}
           </SearchContainer>
         </PageHeader>
-        <EmployeeTable rows={rows} openModal={handleOpen} />
+        <EmployeeTable
+          rows={rows}
+          openModal={handleOpen}
+          setID={id => {
+            setEmployeeID(id);
+          }}
+        />
         <CustomPagination
           count={lastPage}
           variant="outlined"
@@ -191,7 +197,10 @@ const Employees = () => {
       </MainContainer>
 
       <Modal open={open} onClose={handleClose}>
-        <EmployeeModal />
+        <EmployeeModal
+          closeModal={handleClose}
+          employeeDetails={rows.filter(row => row.id === employeeID)[0]}
+        />
       </Modal>
     </>
   );

@@ -32,7 +32,7 @@ const NameTableCell = styled(TableCell)(() => ({
   cursor: 'pointer'
 }));
 
-export default function EmployeeTable({ rows, openModal }) {
+export default function EmployeeTable({ rows, openModal, setID }) {
   console.log(rows);
   return (
     <Table sx={{ minWidth: 650, border: 'none' }} aria-label="simple table">
@@ -51,7 +51,14 @@ export default function EmployeeTable({ rows, openModal }) {
         {rows.map(row => (
           <TableRow key={row.id} sx={{ 'td, th': { border: 'none' } }}>
             <BodyTableCell align="center">{row.id}</BodyTableCell>
-            <NameTableCell onClick={openModal}>{row.name}</NameTableCell>
+            <NameTableCell
+              onClick={() => {
+                openModal();
+                setID(row.id);
+              }}
+            >
+              {row.name}
+            </NameTableCell>
             <BodyTableCell align="left">{row.designation}</BodyTableCell>
             <BodyTableCell align="left">{row.contact}</BodyTableCell>
             <BodyTableCell align="left">{row.address}</BodyTableCell>
