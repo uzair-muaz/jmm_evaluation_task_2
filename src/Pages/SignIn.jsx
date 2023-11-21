@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import axios from 'axios';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
@@ -143,28 +144,34 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
   const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .email('Invalid email address')
-      .required('Email is required'),
+    username: Yup.string().required('Username is required'),
     password: Yup.string().required('Password is required')
   });
 
   const initialValues = {
-    email: '',
+    username: '',
     password: ''
   };
 
   const handleSubmit = async values => {
     setLoader(true);
     await publicRequest
-      .post(`login`, values)
+      .post('', {
+        query: `
+      mutation {
+        login(username: "${values.username}", password: "${values.password}") {
+          token
+        }
+      }
+    `
+      })
       .then(res => {
-        console.log('api data', res.data.token);
-        dispatch(loginSuccess(res.data.token));
+        dispatch(loginSuccess(res.data.data.login.token));
         navigate('/dashboard/employees');
       })
       .catch(error => {
-        toast.error(error.response.data.message);
+        console.log(error);
+        toast.error('Something went wrong :(');
       })
       .finally(() => {
         setLoader(false);
@@ -192,21 +199,21 @@ const SignIn = () => {
           }}
         >
           <Box sx={{ width: '100%' }}>
-            <CustomFormLabel>Email</CustomFormLabel>
+            <CustomFormLabel>Username</CustomFormLabel>
             <CustomTextField
-              id="email"
-              placeholder="Enter mail"
+              id="username"
+              placeholder="Enter username"
               variant="outlined"
-              value={formik.values.email}
+              value={formik.values.username}
               onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
+              error={formik.touched.username && Boolean(formik.errors.username)}
             />
             <ErrorContainer>
-              {typeof formik.errors.email !== 'undefined' &&
-              formik.touched.email ? (
+              {typeof formik.errors.username !== 'undefined' &&
+              formik.touched.username ? (
                 <ErrorMessage>
                   <ErrorOutline sx={{ ...errorIcon }} />
-                  {formik.errors.email}
+                  {formik.errors.username}
                 </ErrorMessage>
               ) : null}
             </ErrorContainer>

@@ -2,16 +2,23 @@ import axios from 'axios';
 
 import { store } from './store';
 
-let BASEURL = 'https://task.jmmtest.xyz/api/';
+let BASEURL = 'https://graphql.jmmerp.com/graphql/';
 
 export const publicRequest = axios.create({
-  baseURL: BASEURL
+  baseURL: BASEURL,
+  headers: {
+    'Content-Type': 'application/json',
+    Tenant: 'gulfam',
+    Branchname: 'shahmir'
+  }
 });
 
 export const privateRequest = axios.create({
   baseURL: BASEURL,
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    Tenant: 'gulfam',
+    Branchname: 'shahmir'
   },
   timeout: 60000
 });

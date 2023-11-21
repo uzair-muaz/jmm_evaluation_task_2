@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
 
 import Employees from './Pages/Employees';
+import SalesInvoice from './Pages/SalesInvoice';
 import Error from './pages/Error';
 import RequireAuth from './pages/RequireAuth';
 import SignIn from './pages/SignIn';
@@ -19,7 +20,7 @@ function App() {
 
         {/* Private Routes */}
         <Route element={<RequireAuth />}>
-          <Route path="/dashboard/employees" element={<Employees />} />
+          <Route path="/dashboard/employees" element={<SalesInvoice />} />
         </Route>
 
         <Route path="*" element={<Error />} />
