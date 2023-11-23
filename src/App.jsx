@@ -3,7 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 
 import { CssBaseline } from '@mui/material';
 
+import CreateSalesInvoice from './Pages/CreateSalesInvoice';
 import Employees from './Pages/Employees';
+import Layout from './Pages/Layout';
 import SalesInvoice from './Pages/SalesInvoice';
 import Error from './pages/Error';
 import RequireAuth from './pages/RequireAuth';
@@ -19,8 +21,14 @@ function App() {
         <Route path="/" element={<SignIn />} />
 
         {/* Private Routes */}
-        <Route element={<RequireAuth />}>
-          <Route path="/dashboard/employees" element={<SalesInvoice />} />
+        <Route path="/" element={<Layout />}>
+          <Route element={<RequireAuth />}>
+            <Route path="/dashboard/sales-invoice" element={<SalesInvoice />} />
+            <Route
+              path="/dashboard/create-sales-invoice"
+              element={<CreateSalesInvoice />}
+            />
+          </Route>
         </Route>
 
         <Route path="*" element={<Error />} />

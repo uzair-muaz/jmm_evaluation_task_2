@@ -12,8 +12,8 @@ import {
   Typography
 } from '@mui/material';
 
-import EmployeeModal from '../components/EmployeeModal';
-import EmployeeTable from '../components/EmployeeTable';
+// import EmployeeModal from '../components/EmployeeModal';
+// import EmployeeTable from '../components/EmployeeTable';
 import { privateRequest } from '../requestMethods';
 
 const MainContainer = styled(Box)(() => ({
@@ -186,13 +186,13 @@ const Employees = () => {
             )}
           </SearchContainer>
         </PageHeader>
-        <EmployeeTable
+        {/* <EmployeeTable
           rows={rows}
           openModal={handleOpen}
           setID={id => {
             setEmployeeID(id);
           }}
-        />
+        /> */}
         <CustomPagination
           count={lastPage}
           variant="outlined"
@@ -201,12 +201,12 @@ const Employees = () => {
         />
       </MainContainer>
 
-      <Modal open={open} onClose={handleClose}>
+      {/* <Modal open={open} onClose={handleClose}>
         <EmployeeModal
           closeModal={handleClose}
           employeeDetails={rows.filter(row => row.id === employeeID)[0]}
         />
-      </Modal>
+      </Modal> */}
     </>
   );
 };
