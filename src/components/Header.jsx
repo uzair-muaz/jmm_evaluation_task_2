@@ -28,7 +28,15 @@ const Header = () => {
           ENG <KeyboardArrowDownOutlined sx={{ fontSize: '12px' }} />
         </DropdownBox>
 
-        <Badge color="secondary" variant="dot" invisible={false}>
+        <Badge
+          sx={{
+            '& .MuiBadge-dot': {
+              backgroundColor: '#2681C1'
+            }
+          }}
+          variant="dot"
+          invisible={false}
+        >
           <NotificationsNoneOutlined sx={{ fontSize: '27px' }} />
         </Badge>
 
