@@ -23,9 +23,9 @@ function App() {
         {/* Private Routes */}
         <Route path="/" element={<Layout />}>
           <Route element={<RequireAuth />}>
-            <Route path="/dashboard/sales-invoice" element={<SalesInvoice />} />
+            <Route path="/sales/sales-invoice" element={<SalesInvoice />} />
             <Route
-              path="/dashboard/create-sales-invoice"
+              path="/sales/create-sales-invoice"
               element={<CreateSalesInvoice />}
             />
           </Route>

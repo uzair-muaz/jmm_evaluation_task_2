@@ -42,7 +42,7 @@ const SalesInvoice = () => {
           </SearchContainer>
           <CreateButton
             onClick={() => {
-              navigate('/sales/create-invoice');
+              navigate('/sales/create-sales-invoice');
             }}
           >
             Create Invoice <Add sx={{ fontSize: '14px', color: 'white' }} />

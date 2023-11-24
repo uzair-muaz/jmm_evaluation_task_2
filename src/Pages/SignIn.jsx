@@ -167,7 +167,7 @@ const SignIn = () => {
       })
       .then(res => {
         dispatch(loginSuccess(res.data.data.login.token));
-        navigate('/dashboard/employees');
+        navigate('/sales/sales-invoice');
       })
       .catch(error => {
         console.log(error);
